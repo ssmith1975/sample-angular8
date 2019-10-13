@@ -81,7 +81,7 @@ namespace TestMakerFreeWebApp.Controllers
 
         } // end Delete
 
-        #endregion 
+        #endregion
 
         #region Attribute-based routing methods
         /// <summary>
@@ -91,7 +91,7 @@ namespace TestMakerFreeWebApp.Controllers
         /// <param name="num">the number of quizzes ot retrieve</param>
         /// <returns>the {num} latest Quizzes</returns>
         // 
-        [HttpGet("Latest/{num}")]
+        [HttpGet("Latest/{num:int?}")]
         public IActionResult Latest(int num=10) 
         {
 
