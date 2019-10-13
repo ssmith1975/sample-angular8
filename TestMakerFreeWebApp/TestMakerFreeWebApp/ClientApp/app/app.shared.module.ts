@@ -10,6 +10,10 @@ import { NavMenuComponent } from './components/navmenu/navmenu.component';
 import { HomeComponent } from './components/home/home.component';
 
 import { QuizListComponent } from './components/quiz/quiz-list.component';
+import { QuizComponent } from './components/quiz/quiz.component';
+
+
+
 
 //import { FetchDataComponent } from './components/fetchdata/fetchdata.component';
 //import { CounterComponent } from './components/counter/counter.component';
@@ -21,7 +25,8 @@ import { QuizListComponent } from './components/quiz/quiz-list.component';
         //CounterComponent,
         //FetchDataComponent,
         HomeComponent,
-        QuizListComponent
+        QuizListComponent,
+        QuizComponent
     ],
     imports: [
         CommonModule,

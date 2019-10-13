@@ -12,11 +12,9 @@ export class QuizListComponent implements OnInit {
     title: string | undefined;
     selectedQuiz: Quiz | undefined;
     quizzes: Quiz[] | undefined;
-    http: HttpClient;
-    baseUrl: string;
 
-    constructor(http: HttpClient,
-        @Inject('BASE_URL') baseUrl: string) {
+    constructor(private http: HttpClient,
+        @Inject('BASE_URL') private baseUrl: string) {
         this.http = http;
         this.baseUrl = baseUrl;
     }
