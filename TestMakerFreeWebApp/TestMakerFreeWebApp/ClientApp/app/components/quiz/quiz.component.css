@@ -3,7 +3,8 @@
     padding: 5px 10px;
     border: 1px solid black;
     background-color: #ddd;
-    width: 300px;
+    min-width: 400px;
+    width: 100%;
 }
 
 .quiz * {
