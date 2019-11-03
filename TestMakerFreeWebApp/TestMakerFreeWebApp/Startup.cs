@@ -54,6 +54,8 @@ namespace TestMakerFreeWebApp
 
             app.UseStaticFiles();
 
+            //DbSeeder.Seed(dbContext);
+
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
