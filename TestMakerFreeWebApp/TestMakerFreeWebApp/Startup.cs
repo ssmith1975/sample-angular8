@@ -55,6 +55,19 @@ namespace TestMakerFreeWebApp
             app.UseStaticFiles();
 
             //DbSeeder.Seed(dbContext);
+            // Create a service scope to get an ApplicationDBContext instance using DI
+            using (var serviceScope =
+                app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope()) {
+
+                var dbContext = serviceScope.ServiceProvider.GetService<ApplicationDbContext>();
+
+                // Create the Db if it doesn't exist and applies any pending migration.
+                dbContext.Database.Migrate();
+
+                // Seed the Db.
+                DbSeeder.Seed(dbContext);
+
+            } // end using
 
             app.UseMvc(routes =>
             {
