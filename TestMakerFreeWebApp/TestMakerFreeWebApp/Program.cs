@@ -20,7 +20,7 @@ namespace TestMakerFreeWebApp
             // BuildWebHost(args).Run();
 
             var host = BuildWebHost(args);
-            using (var scope = host.Services.CreateScope())
+           /* using (var scope = host.Services.CreateScope())
             {
                 var dbContext = scope.ServiceProvider.GetService<ApplicationDbContext>();
 
@@ -29,7 +29,7 @@ namespace TestMakerFreeWebApp
 
                 // Seed the Db
                 DbSeeder.Seed(dbContext);
-            }
+            }*/
             host.Run();
         }
 

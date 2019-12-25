@@ -66,8 +66,8 @@ namespace TestMakerFreeWebApp.Controllers
         /// </summary>
         /// <param name="m">The QuizViewModel containing the data to insert</param>
 
-        [HttpPost("{QuizViewModel}")]
-        public IActionResult Post([FromBody]QuizViewModel model)
+        [HttpPut]
+        public IActionResult Put([FromBody] QuizViewModel model)
         {
             // return a generic HTTP Status 500 (Server Error)
             // if the client payload is invalid.
@@ -102,7 +102,9 @@ namespace TestMakerFreeWebApp.Controllers
             DbContext.SaveChanges();
 
             // return the newly-created Quiz to the client.
-            return new JsonResult(quiz.Adapt<QuizViewModel>(),
+            var results = quiz.Adapt<QuizViewModel>();
+            Console.WriteLine(results.Title);
+            return new JsonResult(results,
 
                 new JsonSerializerSettings()
                 {
@@ -117,8 +119,8 @@ namespace TestMakerFreeWebApp.Controllers
         /// Edit the Quiz with the given {id}
         /// </summary>
         /// <param name="m">The QuizViewModel containing the data to update</param>
-        [HttpPut("{QuizViewModel}")]
-        public IActionResult Put([FromBody]QuizViewModel model)
+        [HttpPost]
+        public IActionResult Post([FromBody] QuizViewModel model)
         {
             // return a generic HTTP Status 500 (Server Error)
             // if the client payload is invalid.
@@ -155,7 +157,7 @@ namespace TestMakerFreeWebApp.Controllers
 
             // persist the changes into the Database
             DbContext.SaveChanges();
-
+            Console.WriteLine(quiz.Title);
             // return the newly-created Quiz to the client.
             return new JsonResult(quiz.Adapt<QuizViewModel>(),
 
@@ -196,7 +198,13 @@ namespace TestMakerFreeWebApp.Controllers
             DbContext.SaveChanges();
 
             // return an HTTP Status 200 (OK).
-            return new OkResult();
+            //return new OkResult();
+
+            // [2018.01.26] BOOK ERRATA: return a NoContentResult to comply with a bug in the Angular 5 HttpRouter (fixed on December 2017, see here: https://github.com/angular/angular/issues/19502) which expects a JSON by default 
+            // and will throw a SyntaxError: Unexpected end of JSON input in case of an HTTP 200 result with no content.
+            // ref.: https://github.com/angular/angular/issues/19502
+            // ref.: https://github.com/PacktPublishing/ASP.NET-Core-2-and-Angular-5/issues/19
+            return new NoContentResult();
 
         } // end Delete
 

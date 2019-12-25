@@ -3,4 +3,5 @@
     Title: string;
     Description: string;
     Text: string;
+    Notes: string;
 }
